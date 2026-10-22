@@ -1,0 +1,2369 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дашборд: Фармацевтический рынок России — факторы будущего (РБК)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f4f6fb;
+            --white: #ffffff;
+            --ink: #0f172a;
+            --ink-soft: #334155;
+            --muted: #64748b;
+            --line: #e2e8f0;
+            --violet: #7c3aed;
+            --pink: #ec4899;
+            --teal: #0d9488;
+            --blue: #2563eb;
+            --orange: #ea580c;
+            --amber: #f59e0b;
+            --green: #16a34a;
+            --red: #dc2626;
+            --radius: 20px;
+            --radius-sm: 14px;
+            --shadow-sm: 0 4px 14px rgba(15, 23, 42, 0.06);
+            --shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Manrope', 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.28;
+            z-index: 0;
+            pointer-events: none;
+        }
+        body::before {
+            width: 520px; height: 520px;
+            background: radial-gradient(circle, #a78bfa, transparent 70%);
+            top: -160px; right: -120px;
+        }
+        body::after {
+            width: 460px; height: 460px;
+            background: radial-gradient(circle, #2dd4bf, transparent 70%);
+            bottom: -160px; left: -140px;
+        }
+
+        .dashboard {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 28px 24px 90px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ================= HERO ================= */
+        .hero {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            margin-bottom: 44px;
+            box-shadow: var(--shadow-lg);
+            min-height: 340px;
+            display: flex;
+            align-items: flex-end;
+            isolation: isolate;
+        }
+        .hero-bg {
+            position: absolute; inset: 0; z-index: 0;
+            background:
+                radial-gradient(circle at 15% 20%, #8b5cf6 0%, transparent 45%),
+                radial-gradient(circle at 85% 25%, #ec4899 0%, transparent 50%),
+                radial-gradient(circle at 70% 90%, #0d9488 0%, transparent 55%),
+                linear-gradient(135deg, #4c1d95, #831843 60%, #134e4a);
+        }
+        .hero-deco {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .hero-fade {
+            position: absolute; inset: 0; z-index: 2;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.6), transparent 65%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            padding: 44px 48px;
+            color: #fff;
+            max-width: 900px;
+        }
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(6px);
+            padding: 7px 16px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 18px;
+        }
+        .hero-eyebrow .dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.35);
+        }
+        .hero h1 {
+            font-size: clamp(1.9rem, 4vw, 3rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 14px;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+        }
+        .hero p {
+            font-size: 1.05rem;
+            font-weight: 500;
+            opacity: 0.95;
+            max-width: 640px;
+        }
+        .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+        .hero-tag {
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 7px 14px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            backdrop-filter: blur(6px);
+        }
+
+        /* ================= KPI (FLIP) ================= */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 18px;
+            margin-bottom: 44px;
+            margin-top: -68px;
+            position: relative;
+            z-index: 3;
+        }
+        .kpi {
+            perspective: 1200px;
+            cursor: pointer;
+            transition: transform 0.25s ease;
+            outline: none;
+        }
+        .kpi:hover { transform: translateY(-5px); }
+        .kpi:focus-visible .kpi-front { box-shadow: 0 0 0 3px #fff, 0 0 0 6px #a78bfa; }
+        .kpi-inner {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .kpi.flipped .kpi-inner { transform: rotateY(180deg); }
+        .kpi-front, .kpi-back {
+            border-radius: var(--radius);
+            color: #fff;
+            box-shadow: var(--shadow);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            position: relative;
+            overflow: hidden;
+        }
+        .kpi-front { padding: 22px 22px 18px; }
+        .kpi-back {
+            position: absolute;
+            inset: 0;
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            line-height: 1.45;
+        }
+        .kpi-front::after {
+            content: '';
+            position: absolute;
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.14);
+            top: -50px; right: -40px;
+        }
+        .kpi.c1 .kpi-front, .kpi.c1 .kpi-back { background: linear-gradient(135deg, #7c3aed, #c026d3); }
+        .kpi.c2 .kpi-front, .kpi.c2 .kpi-back { background: linear-gradient(135deg, #0d9488, #22d3ee); }
+        .kpi.c3 .kpi-front, .kpi.c3 .kpi-back { background: linear-gradient(135deg, #ea580c, #f59e0b); }
+        .kpi.c4 .kpi-front, .kpi.c4 .kpi-back { background: linear-gradient(135deg, #2563eb, #06b6d4); }
+        .kpi.c5 .kpi-front, .kpi.c5 .kpi-back { background: linear-gradient(135deg, #db2777, #f472b6); }
+
+        .kpi-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            display: inline-block;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+        }
+        .kpi-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            opacity: 0.9;
+            margin-bottom: 6px;
+        }
+        .kpi-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+        }
+        .kpi-delta {
+            font-size: 0.8rem;
+            margin-top: 6px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.22);
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+        .kpi-hint {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.66rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            opacity: 0.7;
+            font-weight: 700;
+        }
+
+        /* ================= SECTION ================= */
+        .section {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 28px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+        }
+        .section-top {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 24px 28px;
+            border-bottom: 1px solid var(--line);
+        }
+        .thumb {
+            width: 76px; height: 76px;
+            border-radius: 16px;
+            flex-shrink: 0;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 3px solid #fff;
+            outline: 2px solid transparent;
+        }
+        .thumb svg { width: 100%; height: 100%; display: block; }
+        .title-wrap { flex: 1; min-width: 0; }
+        .section-num {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+        .section-top h2 {
+            font-size: 1.24rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+            color: var(--ink);
+        }
+        .section-body { padding: 24px 28px 28px; }
+
+        .s1 .section-num, .s1 .fact-btn { background: linear-gradient(135deg, #7c3aed, #c026d3); }
+        .s1 .thumb { outline-color: #c026d3; }
+        .s2 .section-num, .s2 .fact-btn { background: linear-gradient(135deg, #0d9488, #22d3ee); }
+        .s2 .thumb { outline-color: #22d3ee; }
+        .s3 .section-num, .s3 .fact-btn { background: linear-gradient(135deg, #ea580c, #f59e0b); }
+        .s3 .thumb { outline-color: #f59e0b; }
+        .s4 .section-num, .s4 .fact-btn { background: linear-gradient(135deg, #2563eb, #06b6d4); }
+        .s4 .thumb { outline-color: #06b6d4; }
+        .s5 .section-num, .s5 .fact-btn { background: linear-gradient(135deg, #db2777, #f472b6); }
+        .s5 .thumb { outline-color: #f472b6; }
+        .s6 .section-num, .s6 .fact-btn { background: linear-gradient(135deg, #7c3aed, #3b82f6); }
+        .s6 .thumb { outline-color: #3b82f6; }
+        .s7 .section-num, .s7 .fact-btn { background: linear-gradient(135deg, #16a34a, #22c55e); }
+        .s7 .thumb { outline-color: #22c55e; }
+
+        /* ================= FACT BUTTON ================= */
+        .fact-btn {
+            flex-shrink: 0;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 9px 16px;
+            border-radius: 30px;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+            animation: pulseBtn 2.6s ease-in-out infinite;
+        }
+        .fact-btn:hover { transform: translateY(-2px) scale(1.04); }
+        .fact-btn.opened { animation: none; filter: saturate(0.55) brightness(1.05); }
+        @keyframes pulseBtn {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.35), var(--shadow-sm); }
+            50% { box-shadow: 0 0 0 8px rgba(124, 58, 237, 0), var(--shadow-sm); }
+        }
+
+        /* ================= FACT PANEL ================= */
+        .fact-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .fact-panel.open { max-height: 420px; }
+        .fact-inner {
+            margin: 18px 28px 0;
+            padding: 16px 20px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #f5f3ff, #fdf2f8);
+            border-left: 5px solid #7c3aed;
+            font-size: 0.88rem;
+            color: var(--ink-soft);
+            line-height: 1.65;
+        }
+        .fact-inner .fi-label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 5px;
+        }
+        .s1 .fact-inner { border-left-color: #c026d3; background: linear-gradient(135deg, #faf5ff, #fdf2f8); }
+        .s1 .fact-inner .fi-label { color: #a21caf; }
+        .s2 .fact-inner { border-left-color: #0d9488; background: linear-gradient(135deg, #f0fdfa, #ecfeff); }
+        .s2 .fact-inner .fi-label { color: #0f766e; }
+        .s3 .fact-inner { border-left-color: #ea580c; background: linear-gradient(135deg, #fff7ed, #fffbeb); }
+        .s3 .fact-inner .fi-label { color: #c2410c; }
+        .s4 .fact-inner { border-left-color: #2563eb; background: linear-gradient(135deg, #eff6ff, #ecfeff); }
+        .s4 .fact-inner .fi-label { color: #1d4ed8; }
+        .s5 .fact-inner { border-left-color: #db2777; background: linear-gradient(135deg, #fdf2f8, #fff1f2); }
+        .s5 .fact-inner .fi-label { color: #be185d; }
+        .s6 .fact-inner { border-left-color: #3b82f6; background: linear-gradient(135deg, #eff6ff, #f5f3ff); }
+        .s6 .fact-inner .fi-label { color: #2563eb; }
+        .s7 .fact-inner { border-left-color: #16a34a; background: linear-gradient(135deg, #f0fdf4, #f7fee7); }
+        .s7 .fact-inner .fi-label { color: #15803d; }
+
+        /* ================= SUBHEAD ================= */
+        .subhead {
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--muted);
+            margin: 22px 0 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .subhead:first-child { margin-top: 0; }
+        .subhead::before {
+            content: '';
+            width: 4px; height: 16px;
+            border-radius: 2px;
+            background: linear-gradient(180deg, #7c3aed, #c026d3);
+        }
+        .s2 .subhead::before { background: linear-gradient(180deg, #0d9488, #22d3ee); }
+        .s3 .subhead::before { background: linear-gradient(180deg, #ea580c, #f59e0b); }
+        .s4 .subhead::before { background: linear-gradient(180deg, #2563eb, #06b6d4); }
+        .s5 .subhead::before { background: linear-gradient(180deg, #db2777, #f472b6); }
+        .s6 .subhead::before { background: linear-gradient(180deg, #7c3aed, #3b82f6); }
+        .s7 .subhead::before { background: linear-gradient(180deg, #16a34a, #22c55e); }
+
+        /* ================= METRICS ================= */
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+        }
+        .metric {
+            background: linear-gradient(160deg, #fafbff, #f1f4fb);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            padding: 16px 18px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .metric:hover { transform: translateY(-3px); border-color: #cbd5e1; }
+        .metric .m-label { font-size: 0.74rem; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
+        .metric .m-value { font-size: 1.2rem; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; }
+        .metric .m-note { font-size: 0.73rem; color: var(--muted); margin-top: 4px; }
+
+        /* ================= BARS ================= */
+        .bars { display: grid; gap: 14px; }
+        .bar-row .bar-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--ink-soft);
+        }
+        .bar-row .bar-top .val { font-weight: 800; }
+        .track { height: 12px; background: #eef2f9; border-radius: 8px; overflow: hidden; }
+        .fill {
+            height: 100%;
+            border-radius: 8px;
+            width: 0;
+            animation: grow 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes grow { to { width: var(--w); } }
+        .fill.violet { background: linear-gradient(90deg, #7c3aed, #c026d3); }
+        .fill.teal { background: linear-gradient(90deg, #0d9488, #2dd4bf); }
+        .fill.blue { background: linear-gradient(90deg, #2563eb, #38bdf8); }
+        .fill.orange { background: linear-gradient(90deg, #ea580c, #fb923c); }
+        .fill.pink { background: linear-gradient(90deg, #db2777, #f472b6); }
+        .fill.green { background: linear-gradient(90deg, #16a34a, #4ade80); }
+        .fill.amber { background: linear-gradient(90deg, #d97706, #fbbf24); }
+        .fill.red { background: linear-gradient(90deg, #dc2626, #f87171); }
+
+        /* ================= LAYOUT ================= */
+        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+
+        /* ================= CHIPS ================= */
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .chip {
+            font-size: 0.76rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 30px;
+            background: #f1f5f9;
+            color: var(--ink-soft);
+            border: 1px solid var(--line);
+        }
+        .chip strong { font-weight: 800; }
+        .chip.violet { background: #f3e8ff; border-color: #d8b4fe; color: #6b21a8; }
+        .chip.teal { background: #ccfbf1; border-color: #5eead4; color: #115e59; }
+        .chip.orange { background: #ffedd5; border-color: #fdba74; color: #9a3412; }
+        .chip.blue { background: #dbeafe; border-color: #93c5fd; color: #1e40af; }
+        .chip.pink { background: #fce7f3; border-color: #f9a8d4; color: #9d174d; }
+        .chip.green { background: #dcfce7; border-color: #86efac; color: #166534; }
+        .chip.amber { background: #fef3c7; border-color: #fcd34d; color: #92400e; }
+
+        /* ================= INSIGHT ================= */
+        .insight {
+            margin-top: 18px;
+            padding: 16px 20px;
+            border-radius: var(--radius-sm);
+            font-size: 0.88rem;
+            line-height: 1.65;
+            color: var(--ink-soft);
+            border-left: 5px solid var(--violet);
+            background: linear-gradient(90deg, #f5f3ff, #faf9ff);
+        }
+        .insight strong { color: var(--violet); font-weight: 800; }
+        .insight.warn { border-left-color: var(--amber); background: linear-gradient(90deg, #fffbeb, #fffdf7); }
+        .insight.warn strong { color: #b45309; }
+        .insight.teal { border-left-color: var(--teal); background: linear-gradient(90deg, #ecfeff, #f7fefe); }
+        .insight.teal strong { color: #0f766e; }
+
+        /* ================= FORECAST ================= */
+        .forecast { display: flex; flex-wrap: wrap; gap: 12px; }
+        .ftag {
+            flex: 1 1 180px;
+            background: linear-gradient(160deg, #fafbff, #f1f4fb);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            border-top: 4px solid var(--violet);
+        }
+        .ftag:nth-child(2) { border-top-color: var(--teal); }
+        .ftag:nth-child(3) { border-top-color: var(--orange); }
+        .ftag:nth-child(4) { border-top-color: var(--pink); }
+        .ftag .ft-year {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+        .ftag .ft-val { font-size: 0.95rem; font-weight: 800; color: var(--ink); }
+
+        /* ================= MATRIX ================= */
+        .matrix {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.84rem;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+        .matrix th, .matrix td { padding: 11px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+        .matrix th {
+            background: #f1f5f9;
+            color: var(--muted);
+            font-weight: 700;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .matrix tbody tr:hover { background: #fafbff; }
+        .matrix td.center { text-align: center; }
+        .cell-pos { color: #16a34a; font-weight: 800; }
+        .cell-neg { color: #dc2626; font-weight: 800; }
+        .cell-neu { color: #d97706; font-weight: 800; }
+
+        /* ================= LISTS ================= */
+        .list-col h4 {
+            font-size: 0.82rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .list-col.up h4 { color: #16a34a; }
+        .list-col.down h4 { color: #dc2626; }
+        .list-col ul { list-style: none; font-size: 0.86rem; color: var(--ink-soft); line-height: 2; }
+        .list-col.up li::before { content: '✔ '; color: #16a34a; font-weight: 800; }
+        .list-col.down li::before { content: '▲ '; color: #dc2626; font-weight: 800; font-size: 0.7rem; }
+
+        /* ================= IMG PANEL (SVG) ================= */
+        .img-panel {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            position: relative;
+            min-height: 200px;
+            box-shadow: var(--shadow-sm);
+        }
+        .img-panel svg {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+        }
+        .img-panel .cap {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            z-index: 2;
+            padding: 16px 18px;
+            color: #fff;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.85), transparent);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* ================= QUIZ ================= */
+        .quiz {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--line);
+            margin-bottom: 28px;
+            overflow: hidden;
+        }
+        .quiz-head {
+            padding: 22px 28px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b 55%, #ea580c);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .quiz-head .qh-icon {
+            width: 54px; height: 54px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.22);
+            display: grid;
+            place-items: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+        .quiz-head h2 { font-size: 1.2rem; font-weight: 800; }
+        .quiz-head p { font-size: 0.82rem; opacity: 0.92; }
+        .quiz-score {
+            margin-left: auto;
+            background: rgba(255, 255, 255, 0.22);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+        .quiz-body { padding: 24px 28px 28px; display: grid; gap: 22px; }
+        .q-text { font-weight: 800; margin-bottom: 10px; font-size: 0.94rem; }
+        .q-opts { display: grid; gap: 8px; }
+        .q-opt {
+            font-family: inherit;
+            text-align: left;
+            cursor: pointer;
+            background: #f8fafc;
+            border: 1.5px solid var(--line);
+            border-radius: 12px;
+            padding: 11px 16px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: var(--ink-soft);
+            transition: all 0.2s ease;
+        }
+        .q-opt:hover:not(:disabled) { border-color: #fbbf24; background: #fffbeb; transform: translateX(4px); }
+        .q-opt:disabled { cursor: default; opacity: 0.9; }
+        .q-opt.correct { background: #dcfce7; border-color: #22c55e; color: #166534; }
+        .q-opt.wrong { background: #fee2e2; border-color: #ef4444; color: #991b1b; }
+        .q-feedback { font-size: 0.82rem; margin-top: 10px; display: none; line-height: 1.55; }
+        .q-feedback.show { display: block; }
+        .q-feedback.ok { color: #15803d; font-weight: 600; }
+        .q-feedback.no { color: #b91c1c; font-weight: 600; }
+
+        /* ================= CALCULATOR ================= */
+        .calc-section {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--line);
+            margin-bottom: 28px;
+            overflow: hidden;
+        }
+        .calc-head {
+            position: relative;
+            padding: 28px 30px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 12% 10%, rgba(124, 58, 237, 0.9), transparent 50%),
+                radial-gradient(circle at 90% 90%, rgba(13, 148, 136, 0.9), transparent 55%),
+                linear-gradient(135deg, #0f172a, #1e1b4b 55%, #134e4a);
+        }
+        .calc-head::after {
+            content: '';
+            position: absolute;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            top: -140px; right: 40px;
+            pointer-events: none;
+        }
+        .calc-head .ch-icon {
+            width: 60px; height: 60px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            display: grid;
+            place-items: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .calc-head .ch-text { position: relative; z-index: 1; flex: 1; min-width: 200px; }
+        .calc-head h2 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+        .calc-head p { font-size: 0.85rem; opacity: 0.9; }
+        .calc-presets {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        .preset-btn {
+            font-family: inherit;
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 9px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(6px);
+        }
+        .preset-btn:hover { background: rgba(255, 255, 255, 0.25); transform: translateY(-2px); }
+        .preset-btn.active {
+            background: #fff;
+            color: #1e1b4b;
+            border-color: #fff;
+        }
+
+        .calc-body {
+            padding: 28px 30px 30px;
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 26px;
+            align-items: start;
+        }
+
+        .calc-inputs { display: grid; gap: 14px; }
+        .calc-field {
+            background: linear-gradient(160deg, #fafbff, #f1f4fb);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 14px 16px;
+            transition: border-color 0.2s;
+        }
+        .calc-field:focus-within { border-color: #a78bfa; box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15); }
+        .calc-field label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--ink-soft);
+            line-height: 1.3;
+        }
+        .calc-field .val-badge {
+            background: linear-gradient(135deg, #7c3aed, #c026d3);
+            color: #fff;
+            padding: 3px 11px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .calc-field:nth-child(2) .val-badge { background: linear-gradient(135deg, #0d9488, #22d3ee); }
+        .calc-field:nth-child(3) .val-badge { background: linear-gradient(135deg, #ea580c, #f59e0b); }
+        .calc-field:nth-child(4) .val-badge { background: linear-gradient(135deg, #2563eb, #06b6d4); }
+
+        .calc-field input[type="range"] {
+            width: 100%;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #e2e8f0;
+            border-radius: 6px;
+            outline: none;
+            cursor: pointer;
+        }
+        .calc-field input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7c3aed, #c026d3);
+            cursor: pointer;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
+            transition: transform 0.15s;
+        }
+        .calc-field input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+        .calc-field input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7c3aed, #c026d3);
+            cursor: pointer;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
+        }
+
+        .calc-reset {
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 10px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            border: 1px solid var(--line);
+            background: #fff;
+            color: var(--ink-soft);
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .calc-reset:hover { border-color: #a78bfa; color: var(--violet); background: #faf5ff; }
+
+        .calc-results { display: grid; gap: 18px; min-width: 0; }
+        .calc-kpis {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .ck {
+            border-radius: 14px;
+            padding: 14px 16px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        .ck::after {
+            content: '';
+            position: absolute;
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.14);
+            top: -30px; right: -20px;
+        }
+        .ck .ck-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            opacity: 0.92;
+            margin-bottom: 4px;
+        }
+        .ck .ck-value {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+        }
+        .ck.c1 { background: linear-gradient(135deg, #7c3aed, #c026d3); }
+        .ck.c2 { background: linear-gradient(135deg, #0d9488, #22d3ee); }
+        .ck.c3 { background: linear-gradient(135deg, #ea580c, #f59e0b); }
+        .ck.c4 { background: linear-gradient(135deg, #db2777, #f472b6); }
+
+        .calc-chart-wrap {
+            background: linear-gradient(160deg, #fbfcff, #f4f7fd);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 16px 18px 8px;
+        }
+        .chart-title {
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink-soft);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .chart-title .ct-unit {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .calc-svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .calc-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+            margin-top: 4px;
+        }
+        .calc-table th {
+            background: #f1f5f9;
+            color: var(--muted);
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 9px 10px;
+            text-align: right;
+        }
+        .calc-table th:first-child { text-align: left; }
+        .calc-table td {
+            padding: 9px 10px;
+            border-bottom: 1px solid var(--line);
+            text-align: right;
+            font-weight: 600;
+            color: var(--ink-soft);
+        }
+        .calc-table td:first-child {
+            text-align: left;
+            font-weight: 800;
+            color: var(--ink);
+        }
+        .calc-table tbody tr:hover { background: #fafbff; }
+        .calc-table .td-pos { color: #15803d; }
+        .calc-table .td-online { color: #0f766e; font-weight: 800; }
+
+        .calc-note {
+            font-size: 0.74rem;
+            color: var(--muted);
+            margin-top: 4px;
+            line-height: 1.55;
+        }
+
+        /* ================= PROGRESS WIDGET ================= */
+        .progress-widget {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 60;
+            width: 244px;
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 15px 17px;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.22);
+            transition: transform 0.3s ease;
+        }
+        .progress-widget:hover { transform: translateY(-3px); }
+        .pw-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+        }
+        .pw-title { font-size: 0.78rem; font-weight: 800; color: var(--ink); }
+        .pw-count {
+            font-size: 0.74rem;
+            font-weight: 800;
+            color: #fff;
+            background: linear-gradient(135deg, #7c3aed, #c026d3);
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+        .pw-track { height: 9px; background: #eef2f9; border-radius: 6px; overflow: hidden; }
+        .pw-fill {
+            height: 100%;
+            width: 0;
+            border-radius: 6px;
+            background: linear-gradient(90deg, #7c3aed, #ec4899);
+            transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1), background 0.4s;
+        }
+        .pw-msg { font-size: 0.7rem; color: var(--muted); margin-top: 8px; font-weight: 600; }
+        .progress-widget.done { border-color: #86efac; }
+        .progress-widget.done .pw-fill { background: linear-gradient(90deg, #16a34a, #4ade80); }
+        .progress-widget.done .pw-count { background: linear-gradient(135deg, #16a34a, #4ade80); }
+        .progress-widget.done .pw-msg { color: #15803d; }
+
+        /* ================= TOAST ================= */
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translate(-50%, -140%);
+            z-index: 100;
+            background: #0f172a;
+            color: #fff;
+            padding: 13px 22px;
+            border-radius: 30px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.35);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s;
+            opacity: 0;
+            max-width: calc(100vw - 32px);
+            text-align: center;
+        }
+        .toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+        /* ================= FOOTER ================= */
+        .footer {
+            text-align: center;
+            margin-top: 44px;
+            padding-top: 26px;
+            border-top: 1px solid var(--line);
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+        .footer .links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 18px;
+            margin-top: 12px;
+        }
+        .footer a { color: var(--violet); font-weight: 600; text-decoration: none; transition: color 0.2s; }
+        .footer a:hover { color: var(--pink); text-decoration: underline; }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 1000px) {
+            .calc-body { grid-template-columns: 1fr; }
+            .calc-kpis { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 820px) {
+            .split { grid-template-columns: 1fr; }
+            .hero-content { padding: 30px 24px; }
+            .section-top { padding: 18px 20px; gap: 12px; }
+            .section-body { padding: 18px 20px 22px; }
+            .fact-inner { margin: 14px 20px 0; }
+            .quiz-head, .quiz-body { padding: 18px 20px; }
+            .dashboard { padding: 16px 14px 110px; }
+            .thumb { width: 58px; height: 58px; border-radius: 13px; }
+            .kpi-grid { margin-top: 0; }
+            .section-top h2 { font-size: 1.05rem; }
+            .fact-btn { font-size: 0.72rem; padding: 8px 13px; }
+            .calc-head, .calc-body { padding: 20px 18px; }
+            .calc-kpis { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .progress-widget {
+                right: 12px; left: 12px; bottom: 12px;
+                width: auto;
+                padding: 12px 14px;
+            }
+            .section-top { flex-wrap: wrap; }
+            .fact-btn { order: 3; margin-left: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+
+        <!-- ============ HERO ============ -->
+        <header class="hero">
+            <div class="hero-bg"></div>
+            <svg class="hero-deco" viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <g fill="#ffffff" opacity="0.08">
+                    <circle cx="1080" cy="60" r="95" />
+                    <circle cx="960" cy="255" r="42" />
+                    <circle cx="180" cy="70" r="56" />
+                    <rect x="110" y="235" width="74" height="74" rx="20" transform="rotate(22 147 272)" />
+                    <rect x="600" y="30" width="56" height="56" rx="16" transform="rotate(-18 628 58)" />
+                </g>
+                <g transform="rotate(-40 880 170)" opacity="0.16">
+                    <rect x="800" y="152" width="160" height="36" rx="18" fill="#ffffff" />
+                    <rect x="880" y="152" width="80" height="36" rx="18" fill="#ffffff" opacity="0.5" />
+                </g>
+                <g stroke="#ffffff" stroke-width="7" stroke-linecap="round" opacity="0.13">
+                    <path d="M300 250 h44 M322 228 v44" />
+                    <path d="M1010 200 h36 M1028 182 v36" />
+                    <path d="M520 90 h30 M535 75 v30" />
+                </g>
+            </svg>
+            <div class="hero-fade"></div>
+            <div class="hero-content">
+                <span class="hero-eyebrow"><span class="dot"></span> Аналитический дашборд · РБК</span>
+                <h1>Фармацевтический рынок России:<br>факторы будущего</h1>
+                <p>Объём, структура, импортозамещение, инновации, M&amp;A, цифровизация и прогнозы до 2030 года — по материалам РБК Отрасли и РБК Компании.</p>
+                <div class="hero-tags">
+                    <span class="hero-tag">📊 2024–2026</span>
+                    <span class="hero-tag">🔮 прогноз до 2030</span>
+                    <span class="hero-tag">🏭 DSM Group · RNC Pharma · AlphaRM · IQVIA</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ============ KPI ============ -->
+        <div class="kpi-grid">
+            <div class="kpi c1" tabindex="0" role="button" aria-label="Объём рынка — подробнее">
+                <div class="kpi-inner">
+                    <div class="kpi-front">
+                        <span class="kpi-icon">💰</span>
+                        <div class="kpi-label">Объём рынка, 2025</div>
+                        <div class="kpi-value">3,3 трлн ₽</div>
+                        <div class="kpi-delta">▲ +17% к 2024</div>
+                        <span class="kpi-hint">нажмите →</span>
+                    </div>
+                    <div class="kpi-back"><span>Рост в деньгах в 5 раз быстрее, чем в упаковках: +17% против +3,2%.</span></div>
+                </div>
+            </div>
+            <div class="kpi c2" tabindex="0" role="button" aria-label="Упаковки — подробнее">
+                <div class="kpi-inner">
+                    <div class="kpi-front">
+                        <span class="kpi-icon">💊</span>
+                        <div class="kpi-label">Упаковок, 2025</div>
+                        <div class="kpi-value">5,1 млрд</div>
+                        <div class="kpi-delta">▲ +3,2% к 2024</div>
+                        <span class="kpi-hint">нажмите →</span>
+                    </div>
+                    <div class="kpi-back"><span>Рост в упаковках впервые с 2018 года — но рынок растёт в основном за счёт цены и укрупнения упаковки.</span></div>
+                </div>
+            </div>
+            <div class="kpi c3" tabindex="0" role="button" aria-label="Онлайн-продажи — подробнее">
+                <div class="kpi-inner">
+                    <div class="kpi-front">
+                        <span class="kpi-icon">🛒</span>
+                        <div class="kpi-label">Онлайн-продажи, 2025</div>
+                        <div class="kpi-value">578,6 млрд ₽</div>
+                        <div class="kpi-delta">▲ +33,8% к 2024</div>
+                        <span class="kpi-hint">нажмите →</span>
+                    </div>
+                    <div class="kpi-back"><span>Онлайн — 24,6% розничного рынка и самый быстрорастущий канал: почти втрое быстрее офлайна.</span></div>
+                </div>
+            </div>
+            <div class="kpi c4" tabindex="0" role="button" aria-label="Госсегмент — подробнее">
+                <div class="kpi-inner">
+                    <div class="kpi-front">
+                        <span class="kpi-icon">🏛️</span>
+                        <div class="kpi-label">Госсегмент, 2025</div>
+                        <div class="kpi-value">~1 трлн ₽</div>
+                        <div class="kpi-delta">≈30% рынка</div>
+                        <span class="kpi-hint">нажмите →</span>
+                    </div>
+                    <div class="kpi-back"><span>Государство — крупнейший заказчик: ГОЗ и льготное обеспечение растут быстрее коммерческой розницы.</span></div>
+                </div>
+            </div>
+            <div class="kpi c5" tabindex="0" role="button" aria-label="Концентрация сетей — подробнее">
+                <div class="kpi-inner">
+                    <div class="kpi-front">
+                        <span class="kpi-icon">🏪</span>
+                        <div class="kpi-label">ТОП-20 аптечных сетей</div>
+                        <div class="kpi-value">74,3%</div>
+                        <div class="kpi-delta">▲ +6,9 п.п. за год</div>
+                        <span class="kpi-hint">нажмите →</span>
+                    </div>
+                    <div class="kpi-back"><span>Федеральные сети консолидируют рынок: доля ТОП-20 выросла с 67,4% до 74,3% за год.</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ SECTION 1 ============ -->
+        <section class="section s1">
+            <div class="section-top">
+                <div class="thumb" aria-hidden="true">
+                    <svg viewBox="0 0 76 76">
+                        <defs>
+                            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="76" height="76" fill="url(#g1)"/>
+                        <g fill="#fff">
+                            <rect x="15" y="44" width="10" height="18" rx="3"/>
+                            <rect x="30" y="36" width="10" height="26" rx="3"/>
+                            <rect x="45" y="28" width="10" height="34" rx="3"/>
+                            <rect x="60" y="20" width="10" height="42" rx="3" opacity="0.5"/>
+                        </g>
+                        <path d="M18 38 L33 28 L47 22 L63 13" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+                    </svg>
+                </div>
+                <div class="title-wrap">
+                    <span class="section-num">01</span>
+                    <h2>Общая динамика и макроэкономический контекст рынка</h2>
+                </div>
+                <button class="fact-btn" data-sec="1" aria-expanded="false" aria-controls="fact-1">
+                    <span>💡</span><span class="fb-text">Факт</span>
+                </button>
+            </div>
+            <div class="fact-panel" id="fact-1">
+                <div class="fact-inner">
+                    <span class="fi-label">Инсайт раздела</span>
+                    Рынок в деньгах растёт в 5 раз быстрее, чем в упаковках: +17% против +3,2% за 2025 год. Драйвер — не физическое потребление, а цена, укрупнение упаковки и сдвиг к более дорогим препаратам.
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="subhead">Объём рынка в деньгах и натуральном выражении</div>
+                <div class="split">
+                    <div class="metric-grid">
+                        <div class="metric">
+                            <div class="m-label">Объём рынка, 2025</div>
+                            <div class="m-value">3,3 трлн ₽</div>
+                            <div class="m-note">+17% к 2024 году</div>
+                        </div>
+                        <div class="metric">
+                            <div class="m-label">Натуральный объём, 2025</div>
+                            <div class="m-value">5,1 млрд упаковок</div>
+                            <div class="m-note">+3,2%; рост в упаковках впервые с 2018</div>
+                        </div>
+                        <div class="metric">
+                            <div class="m-label">Рост в минимальных единицах потребления</div>
+                            <div class="m-value">+17,6%</div>
+                            <div class="m-note">структурный и ценовой факторы</div>
+                        </div>
+                        <div class="metric">
+                            <div class="m-label">Средняя цена упаковки</div>
+                            <div class="m-value">~647 ₽</div>
+                            <div class="m-note">укрупнение упаковки и сдвиг к дорогим препаратам</div>
+                        </div>
+                    </div>
+                    <div class="bars">
+                        <div class="bar-row">
+                            <div class="bar-top"><span>Денежное выражение</span><span class="val">+17%</span></div>
+                            <div class="track"><div class="fill violet" style="--w:85%"></div></div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-top"><span>Натуральное выражение (упаковки)</span><span class="val">+3,2%</span></div>
+                            <div class="track"><div class="fill teal" style="--w:16%"></div></div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-top"><span>Госсегмент (упаковки)</span><span class="val">+27%</span></div>
+                            <div class="track"><div class="fill blue" style="--w:100%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subhead">Фактическая динамика последних лет</div>
+                <div class="metric-grid">
+                    <div class="metric"><div class="m-label">2022</div><div class="m-value">~2,3 трлн ₽</div><div class="m-note">база отсчёта</div></div>
+                    <div class="metric"><div class="m-label">2023</div><div class="m-value">~2,5 трлн ₽</div><div class="m-note">+~9%</div></div>
+                    <div class="metric"><div class="m-label">2024</div><div class="m-value">~2,8 трлн ₽</div><div class="m-note">+~12%</div></div>
+                    <div class="metric"><div class="m-label">2025</div><div class="m-value">3,3 трлн ₽</div><div class="m-note">+17%</div></div>
+                </div>
+
+                <div class="subhead">Макроэкономические показатели и их влияние на цены</div>
+                <div class="metric-grid">
+                    <div class="metric"><div class="m-label">Инфляция, 2025</div><div class="m-value">6,7%</div><div class="m-note">частично транслируется в цены на лекарства</div></div>
+                    <div class="metric"><div class="m-label">Ключевая ставка ЦБ</div><div class="m-value">высокая</div><div class="m-note">удорожает кредитование и инвестиции</div></div>
+                    <div class="metric"><div class="m-label">Валютный курс</div><div class="m-value">ослабление рубля</div><div class="m-note">растёт стоимость импортных препаратов и АФС</div></div>
+                </div>
+
+                <div class="insight">
+                    <strong>Ключевой разрыв:</strong> рынок растёт в деньгах значительно быстрее, чем в упаковках. Основные драйверы — укрупнение упаковки, переход к более дорогим препаратам и инфляция, а не физическое потребление. Прогнозы и траектория развития — см. раздел 7.
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SECTION 2 ============ -->
+        <section class="section s2">
+            <div class="section-top">
+                <div class="thumb" aria-hidden="true">
+                    <svg viewBox="0 0 76 76">
+                        <defs>
+                            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#0d9488"/><stop offset="1" stop-color="#22d3ee"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="76" height="76" fill="url(#g2)"/>
+                        <circle cx="38" cy="38" r="22" fill="#fff" opacity="0.95"/>
+                        <path d="M38 38 L38 16 A22 22 0 0 1 57.05 49 Z" fill="#0f766e" opacity="0.55"/>
+                        <circle cx="38" cy="38" r="7" fill="#0d9488"/>
+                    </svg>
+                </div>
+                <div class="title-wrap">
+                    <span class="section-num">02</span>
+                    <h2>Структура рынка, сегментация, каналы и игроки</h2>
+                </div>
+                <button class="fact-btn" data-sec="2" aria-expanded="false" aria-controls="fact-2">
+                    <span>💡</span><span class="fb-text">Факт</span>
+                </button>
+            </div>
+            <div class="fact-panel" id="fact-2">
+                <div class="fact-inner">
+                    <span class="fi-label">Инсайт раздела</span>
+                    Государство — крупнейший заказчик: госсегмент ≈1 трлн ₽ (около 30% рынка) и растёт быстрее коммерческой розницы. При этом 74,3% аптечной розницы уже контролируют 20 федеральных сетей.
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="subhead">Коммерческий и государственный сегменты</div>
+                <div class="metric-grid">
+                    <div class="metric"><div class="m-label">Коммерческий сегмент</div><div class="m-value">~64% рынка</div><div class="m-note">2 313 млрд ₽ в 2025 г.</div></div>
+                    <div class="metric"><div class="m-label">Государственный сегмент</div><div class="m-value">~1 трлн ₽</div><div class="m-note">ГОЗ, льготное лекарственное обеспечение</div></div>
+                    <div class="metric"><div class="m-label">Доля Rx-препаратов</div><div class="m-value">72%</div><div class="m-note">рецептурные доминируют в деньгах</div></div>
+                    <div class="metric"><div class="m-label">Доля OTC-препаратов</div><div class="m-value">28%</div><div class="m-note">безрецептурный сегмент</div></div>
+                </div>
+
+                <div class="subhead">Сегментация по каналам и типам препаратов</div>
+                <div class="split">
+                    <div class="bars">
+                        <div class="bar-row">
+                            <div class="bar-top"><span>Офлайн-аптеки</span><span class="val">75,4%</span></div>
+                            <div class="track"><div class="fill blue" style="--w:75.4%"></div></div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-top"><span>Онлайн-канал</span><span class="val">24,6%</span></div>
+                            <div class="track"><div class="fill teal" style="--w:24.6%"></div></div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-top"><span>Rx-препараты (деньги)</span><span class="val">72%</span></div>
+                            <div class="track"><div class="fill violet" style="--w:72%"></div></div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-top"><span>OTC-препараты (деньги)</span><span class="val">28%</span></div>
+                            <div class="track"><div class="fill orange" style="--w:28%"></div></div>
+                        </div>
+                    </div>
+                    <div class="img-panel">
+                        <svg viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="p2" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#0f766e"/><stop offset="1" stop-color="#22d3ee"/>
+                                </linearGradient>
+                            </defs>
+                            <rect width="600" height="200" fill="url(#p2)"/>
+                            <g fill="#fff" opacity="0.14">
+                                <circle cx="520" cy="26" r="92"/>
+                                <circle cx="70" cy="188" r="74"/>
+                            </g>
+                            <g fill="#fff">
+                                <rect x="120" y="112" width="46" height="62" rx="8" opacity="0.5"/>
+                                <rect x="180" y="86" width="46" height="88" rx="8" opacity="0.68"/>
+                                <rect x="240" y="60" width="46" height="114" rx="8" opacity="0.85"/>
+                                <rect x="300" y="34" width="46" height="140" rx="8"/>
+                            </g>
+                            <path d="M128 104 L188 78 L248 52 L308 26" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+                        </svg>
+                        <div class="cap">Ценовые категории: рынок смещается в средний и высокий сегменты</div>
+                    </div>
+                </div>
+
+                <div class="subhead">Дистрибьюция и концентрация</div>
+                <div class="metric-grid">
+                    <div class="metric"><div class="m-label">Доля ТОП-20 аптечных сетей</div><div class="m-value">74,3%</div><div class="m-note">янв–сен 2025; +6,9 п.п. к 2024</div></div>
+                    <div class="metric"><div class="m-label">Крупнейшие игроки розницы</div><div class="m-value">«Ригла», «Апрель»</div><div class="m-note">федеральные сети наращивают долю</div></div>
+                    <div class="metric"><div class="m-label">Дистрибьюция</div><div class="m-value">высокая концентрация</div><div class="m-note">ключевые игроки контролируют логистику</div></div>
+                </div>
+
+                <div class="insight teal">
+                    Рост рынка преимущественно обеспечивается государством — в госпитальном сегменте, федеральных и региональных льготах. Коммерческая розница растёт в деньгах, но физическое потребление безрецептурных препаратов снижается.
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SECTION 3 ============ -->
+        <section class="section s3">
+            <div class="section-top">
+                <div class="thumb" aria-hidden="true">
+                    <svg viewBox="0 0 76 76">
+                        <defs>
+                            <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#ea580c"/><stop offset="1" stop-color="#f59e0b"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="76" height="76" fill="url(#g3)"/>
+                        <g transform="rotate(-42 38 32)">
+                            <rect x="16" y="24" width="44" height="17" rx="8.5" fill="#fff"/>
+                            <rect x="38" y="24" width="22" height="17" rx="8.5" fill="#fff" opacity="0.5"/>
+                        </g>
+                        <circle cx="24" cy="59" r="5" fill="#fff" opacity="0.75"/>
+                        <circle cx="39" cy="62" r="4" fill="#fff" opacity="0.55"/>
+                        <circle cx="53" cy="57" r="3.4" fill="#fff" opacity="0.4"/>
+                    </svg>
+                </div>
+                <div class="title-wrap">
+                    <span class="section-num">03</span>
+                    <h2>Импортозамещение и локализация: от упаковки к субстанциям</h2>
+                </div>
+                <button class="fact-btn" data-sec="3" aria-expanded="false" aria-controls="fact-3">
+                    <span>💡</span><span class="fb-text">Факт</span>
+                </button>
+            </div>
+            <div class="fact-panel" id="fact-3">
+                <div class="fact-inner">
+                    <span class="fi-label">Инсайт раздела</span>
+                    Локализация упаковки ≠ локализация сырья: готовые формы уже на 69,3% локальные в упаковках, но 70–80% активных фармсубстанций (АФС) по-прежнему ввозится из Китая и Индии.
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="subhead">Дженерики и вытеснение импорта</div>
+                <div class="split">
+                    <div class="metric-grid">
+                        <div class="metric"><div class="m-label">Доля дженериков (деньги)</div><div class="m-value">72,3%</div><div class="m-note">2025</div></div>
+                        <div class="metric"><div class="m-label">Доля дженериков (упаковки)</div><div class="m-value">86,3%</div><div class="m-note">2025</div></div>
+                        <div class="metric"><div class="m-label">Локальные препараты (деньги)</div><div class="m-value">46,8%</div><div class="m-note">2025; выше плана «Фарма-2030»</div></div>
+                        <div class="metric"><div class="m-label">Локальные препараты (упаковки)</div><div class="m-value">69,3%</div><div class="m-note">2025</div></div>
+                    </div>
+                    <div class="bars">
+                        <div class="bar-row">
+                            <div class="bar-top"><span>Дженерики (деньги)</span><span class="val">72,3%</span></div>
+                            <div class="track"><div class="fill orange" style="--w:72.3%"></div></div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-top"><span>Дженерики (упаковки)</span><span class="val">86,3%</span></div>
+                            <div class="track"><div class="fill amber" style="--w:86.3%"></div></div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-top"><span>Локальные препараты (деньги)</span><span class="val">46,8%</span></div>
+                            <div class="track"><div class="fill violet" style="--w:46.8%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subhead">Вызовы локализации АФС</div>
+                <div class="metric-grid">
+                    <div class="metric"><div class="m-label">Локализация АФС</div><div class="m-value">~10%</div><div class="m-note">70–80% АФС импортируется</div></div>
+                    <div class="metric"><div class="m-label">Основные поставщики АФС</div><div class="m-value">Китай, Индия</div><div class="m-note">критическая зависимость</div></div>
+                    <div class="metric"><div class="m-label">Необходимые инвестиции</div><div class="m-value">100–120 млрд ₽</div><div class="m-note">для переноса синтеза АФС в Россию</div></div>
+                    <div class="metric"><div class="m-label">Цель к 2030</div><div class="m-value">−50% импорта АФС</div><div class="m-note">по стратегии «Фарма-2030»</div></div>
+                </div>
+
+                <div class="subhead">Стратегия «Фарма 2030»</div>
+                <div class="chips">
+                    <span class="chip orange"><strong>Цель:</strong> 50% локальных препаратов в деньгах к 2030</span>
+                    <span class="chip amber"><strong>Механизмы:</strong> «второй лишний», СЗЛС, субсидии</span>
+                    <span class="chip green"><strong>Итог 2025:</strong> 46,8% в деньгах, 69,3% в упаковках</span>
+                </div>
+
+                <div class="insight warn">
+                    <strong>Главный вызов:</strong> если локализация готовых форм уже достигла высокого уровня, то производство активных фармсубстанций остаётся критически зависимым от импорта. Перенос синтеза АФС в Россию существенно увеличивает себестоимость.
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SECTION 4 ============ -->
+        <section class="section s4">
+            <div class="section-top">
+                <div class="thumb" aria-hidden="true">
+                    <svg viewBox="0 0 76 76">
+                        <defs>
+                            <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#2563eb"/><stop offset="1" stop-color="#06b6d4"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="76" height="76" fill="url(#g4)"/>
+                        <path d="M31 15 v16 L17 54 a8 8 0 0 0 7 12 h28 a8 8 0 0 0 7-12 L45 31 V15"
+                              fill="none" stroke="#fff" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"/>
+                        <path d="M24 48 h28 l6 8 a6 6 0 0 1-5 9 H23 a6 6 0 0 1-5-9 Z" fill="#fff" opacity="0.65"/>
+                        <circle cx="31" cy="54" r="2.6" fill="#2563eb"/>
+                        <circle cx="42" cy="59" r="2.1" fill="#2563eb"/>
+                    </svg>
+                </div>
+                <div class="title-wrap">
+                    <span class="section-num">04</span>
+                    <h2>Инновации и клинические исследования</h2>
+                </div>
+                <button class="fact-btn" data-sec="4" aria-expanded="false" aria-controls="fact-4">
+                    <span>💡</span><span class="fb-text">Факт</span>
+                </button>
+            </div>
+            <div class="fact-panel" id="fact-4">
+                <div class="fact-inner">
+                    <span class="fi-label">Инсайт раздела</span>
+                    ММКИ в России остаются в 10 раз ниже допандемийного уровня, а иностранных спонсоров локальных КИ всего 3 (−75% к 2024). Инновационный потенциал держится в основном на государственной поддержке.
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="subhead">Инновационные препараты и разработки</div>
+                <div class="split">
+                    <div class="metric-grid">
+                        <div class="metric"><div class="m-label">Доля инновационных препаратов</div><div class="m-value">~37%</div><div class="m-note">в деньгах; рынок остаётся дженериковым</div></div>
+                        <div class="metric"><div class="m-label">Драйверы инноваций</div><div class="m-value">господдержка</div><div class="m-note">субсидии, fast-track регистрация, СЗЛС</div></div>
+                        <div class="metric"><div class="m-label">Биосимиляры</div><div class="m-value">перспективная ниша</div><div class="m-note">фокус для инвестиций</div></div>
+                    </div>
+                    <div class="img-panel">
+                        <svg viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="p4" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#1d4ed8"/><stop offset="1" stop-color="#06b6d4"/>
+                                </linearGradient>
+                            </defs>
+                            <rect width="600" height="200" fill="url(#p4)"/>
+                            <g fill="#fff" opacity="0.13">
+                                <circle cx="80" cy="30" r="80"/>
+                                <circle cx="540" cy="180" r="86"/>
+                            </g>
+                            <g stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85">
+                                <path d="M250 40 v42 L200 148 a16 16 0 0 0 14 26 h72 a16 16 0 0 0 14-26 l-50-66 V40"/>
+                                <path d="M236 40 h60"/>
+                            </g>
+                            <path d="M215 132 h70 l14 18 a10 10 0 0 1-8 16 h-82 a10 10 0 0 1-8-16 Z" fill="#fff" opacity="0.55"/>
+                            <g fill="#fff" opacity="0.8">
+                                <circle cx="430" cy="70" r="8"/>
+                                <circle cx="470" cy="110" r="5"/>
+                                <circle cx="410" cy="130" r="4"/>
+                                <circle cx="150" cy="80" r="6"/>
+                                <circle cx="120" cy="120" r="4"/>
+                            </g>
+                            <g stroke="#fff" stroke-width="3" opacity="0.55">
+                                <path d="M430 70 L470 110 M430 70 L410 130 M150 80 L120 120"/>
+                            </g>
+                        </svg>
+                        <div class="cap">Разработка инновационных препаратов и клинические исследования</div>
+                    </div>
+                </div>
+
+                <div class="subhead">Клинические исследования: объёмы и регулирование</div>
+                <div class="metric-grid">
+                    <div class="metric"><div class="m-label">Разрешения на КИ, I пол. 2025</div><div class="m-value">278</div><div class="m-note">+10,3% к I пол. 2024</div></div>
+                    <div class="metric"><div class="m-label">ММКИ, I пол. 2025</div><div class="m-value">10</div><div class="m-note">против 9 годом ранее; менее 1/10 от допандемийного уровня</div></div>
+                    <div class="metric"><div class="m-label">Иностранные спонсоры (локальные КИ)</div><div class="m-value">3</div><div class="m-note">−75% к 2024; минимум с 2012 г.</div></div>
+                    <div class="metric"><div class="m-label">Регуляторные изменения</div><div class="m-value">упрощения</div><div class="m-note">ускоренная регистрация, гармонизация с ЕАЭС</div></div>
+                </div>
+
+                <div class="subhead">Риски и стимулы для разработчиков</div>
+                <div class="split">
+                    <div class="list-col up">
+                        <h4>Стимулы</h4>
+                        <ul>
+                            <li>Государственные субсидии и гранты</li>
+                            <li>Ускоренная регистрация</li>
+                            <li>Приоритет в госзакупках (СЗЛС)</li>
+                        </ul>
+                    </div>
+                    <div class="list-col down">
+                        <h4>Риски</h4>
+                        <ul>
+                            <li>Уход западных спонсоров</li>
+                            <li>Низкая база ММКИ</li>
+                            <li>Длительные сроки окупаемости</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="insight">
+                    <strong>Двойственность:</strong> господдержка и регуляторные упрощения стимулируют локальные КИ, но уход западных спонсоров и низкая база ММКИ ограничивают инновационный потенциал.
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SECTION 5 ============ -->
+        <section class="section s5">
+            <div class="section-top">
+                <div class="thumb" aria-hidden="true">
+                    <svg viewBox="0 0 76 76">
+                        <defs>
+                            <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#db2777"/><stop offset="1" stop-color="#f472b6"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="76" height="76" fill="url(#g5)"/>
+                        <circle cx="27" cy="38" r="15" fill="#fff" opacity="0.85"/>
+                        <circle cx="49" cy="38" r="15" fill="#fff" opacity="0.5"/>
+                        <path d="M38 29 v18" stroke="#db2777" stroke-width="3.2" stroke-linecap="round" opacity="0.8"/>
+                        <path d="M33 34 l5 5 5-5" stroke="#db2777" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+                    </svg>
+                </div>
+                <div class="title-wrap">
+                    <span class="section-num">05</span>
+                    <h2>M&amp;A и инвестиции: сделки и консолидация</h2>
+                </div>
+                <button class="fact-btn" data-sec="5" aria-expanded="false" aria-controls="fact-5">
+                    <span>💡</span><span class="fb-text">Факт</span>
+                </button>
+            </div>
+            <div class="fact-panel" id="fact-5">
+                <div class="fact-inner">
+                    <span class="fi-label">Инсайт раздела</span>
+                    56 сделок M&amp;A в рознице за 10 месяцев 2025 года и 736 проданных аптек: консолидация идёт не через крупные сделки, а через скупку мелких региональных сетей федеральными игроками.
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="subhead">Консолидация рынка и структура сделок</div>
+                <div class="split">
+                    <div class="metric-grid">
+                        <div class="metric"><div class="m-label">Сделки M&amp;A в рознице, 10 мес. 2025</div><div class="m-value">56</div><div class="m-note">продано 736 аптек</div></div>
+                        <div class="metric"><div class="m-label">Доля ТОП-20 сетей</div><div class="m-value">74,3%</div><div class="m-note">против 67,4% годом ранее</div></div>
+                        <div class="metric"><div class="m-label">Крупнейшая сделка</div><div class="m-value">«Ригла» / «Алия»</div><div class="m-note">174 аптеки</div></div>
+                        <div class="metric"><div class="m-label">Профиль сделок</div><div class="m-value">мелкие региональные</div><div class="m-note">скупка малых сетей федеральными игроками</div></div>
+                    </div>
+                    <div class="insight" style="margin-top:0;">
+                        <strong>Тренд:</strong> консолидация сместилась с крупных сделок к скупке мелких региональных игроков. Федеральные сети («Ригла», «Апрель») наращивают долю, малый бизнес продаётся из-за налоговой и кадровой нагрузки.
+                    </div>
+                </div>
+
+                <div class="subhead">Глобальные тренды M&amp;A и адаптация к российским условиям</div>
+                <div class="metric-grid">
+                    <div class="metric"><div class="m-label">Глобальный тренд</div><div class="m-value">консолидация и specialty pharma</div><div class="m-note">фокус на инновационные ниши</div></div>
+                    <div class="metric"><div class="m-label">Российская адаптация</div><div class="m-value">региональные сделки</div><div class="m-note">крупные международные сделки ограничены</div></div>
+                    <div class="metric"><div class="m-label">Интерес инвесторов</div><div class="m-value">розница и производство</div><div class="m-note">полный цикл — приоритет</div></div>
+                </div>
+
+                <div class="forecast" style="margin-top:18px;">
+                    <div class="ftag">
+                        <div class="ft-year">M&amp;A 2026</div>
+                        <div class="ft-val">продолжение консолидации</div>
+                    </div>
+                    <div class="ftag">
+                        <div class="ft-year">Профиль сделок</div>
+                        <div class="ft-val">малые и средние региональные сети</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SECTION 6 ============ -->
+        <section class="section s6">
+            <div class="section-top">
+                <div class="thumb" aria-hidden="true">
+                    <svg viewBox="0 0 76 76">
+                        <defs>
+                            <linearGradient id="g6" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#3b82f6"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="76" height="76" fill="url(#g6)"/>
+                        <path d="M17 22 h7 l7 27 h26 l6-19 H27"
+                              fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="33" cy="59" r="4.2" fill="#fff"/>
+                        <circle cx="52" cy="59" r="4.2" fill="#fff"/>
+                    </svg>
+                </div>
+                <div class="title-wrap">
+                    <span class="section-num">06</span>
+                    <h2>Цифровизация и онлайн-продажи</h2>
+                </div>
+                <button class="fact-btn" data-sec="6" aria-expanded="false" aria-controls="fact-6">
+                    <span>💡</span><span class="fb-text">Факт</span>
+                </button>
+            </div>
+            <div class="fact-panel" id="fact-6">
+                <div class="fact-inner">
+                    <span class="fi-label">Инсайт раздела</span>
+                    Онлайн растёт почти втрое быстрее офлайна: +33,8% против +12,1%. Средний чек на маркетплейсах (1 610 ₽) вдвое выше аптечного — онлайн формирует новый, более дорогой покупательский сценарий.
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="subhead">Рост онлайн-продаж и электронной коммерции</div>
+                <div class="split">
+                    <div class="metric-grid">
+                        <div class="metric"><div class="m-label">Онлайн-продажи, 2025</div><div class="m-value">578,6 млрд ₽</div><div class="m-note">+33,8% к 2024</div></div>
+                        <div class="metric"><div class="m-label">Доля онлайн-канала</div><div class="m-value">24,6%</div><div class="m-note">розничного рынка, +4 п.п. за год</div></div>
+                        <div class="metric"><div class="m-label">Лидер онлайн</div><div class="m-value">«Аптека.ру»</div><div class="m-note">120,3 млрд ₽, доля 5,1%</div></div>
+                        <div class="metric"><div class="m-label">Средний чек на маркетплейсах</div><div class="m-value">1 610 ₽</div><div class="m-note">в 2 раза выше аптечного</div></div>
+                    </div>
+                    <div class="bars">
+                        <div class="bar-row">
+                            <div class="bar-top"><span>Онлайн-канал</span><span class="val">24,6%</span></div>
+                            <div class="track"><div class="fill violet" style="--w:24.6%"></div></div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-top"><span>Традиционные аптеки</span><span class="val">75,4%</span></div>
+                            <div class="track"><div class="fill blue" style="--w:75.4%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subhead">Цифровая трансформация дистрибьюции и аптечных сетей</div>
+                <div class="chips">
+                    <span class="chip violet"><strong>Электронные рецепты</strong></span>
+                    <span class="chip blue">Интеграция с маркетплейсами</span>
+                    <span class="chip teal">Цифровая логистика</span>
+                    <span class="chip green">Прогнозирование спроса</span>
+                </div>
+
+                <div class="subhead">Регулирование онлайн-торговли лекарствами</div>
+                <div class="split">
+                    <div class="list-col down">
+                        <h4>Ограничения</h4>
+                        <ul>
+                            <li>Запрет на онлайн-продажу Rx-препаратов</li>
+                            <li>Требования к идентификации</li>
+                            <li>Региональные ограничения</li>
+                        </ul>
+                    </div>
+                    <div class="list-col up">
+                        <h4>Возможности</h4>
+                        <ul>
+                            <li>Пилотные проекты по Rx-онлайн</li>
+                            <li>Расширение ассортимента OTC</li>
+                            <li>Рост доступности в регионах</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="insight teal">
+                    Онлайн растёт более чем вдвое быстрее традиционной розницы (+33,8% против +12,1%). Драйверы — расширение ассортимента, ценовая прозрачность и доступность в регионах. Регулирование онлайн-торговли Rx остаётся ключевым ограничением и одновременно точкой роста.
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SECTION 7 ============ -->
+        <section class="section s7">
+            <div class="section-top">
+                <div class="thumb" aria-hidden="true">
+                    <svg viewBox="0 0 76 76">
+                        <defs>
+                            <linearGradient id="g7" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#16a34a"/><stop offset="1" stop-color="#4ade80"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="76" height="76" fill="url(#g7)"/>
+                        <circle cx="38" cy="38" r="21" fill="none" stroke="#fff" stroke-width="3.2" opacity="0.6"/>
+                        <circle cx="38" cy="38" r="13" fill="none" stroke="#fff" stroke-width="3.2" opacity="0.85"/>
+                        <circle cx="38" cy="38" r="5.4" fill="#fff"/>
+                    </svg>
+                </div>
+                <div class="title-wrap">
+                    <span class="section-num">07</span>
+                    <h2>Прогнозы до 2030 года, инвестиционная привлекательность и рекомендации</h2>
+                </div>
+                <button class="fact-btn" data-sec="7" aria-expanded="false" aria-controls="fact-7">
+                    <span>💡</span><span class="fb-text">Факт</span>
+                </button>
+            </div>
+            <div class="fact-panel" id="fact-7">
+                <div class="fact-inner">
+                    <span class="fi-label">Инсайт раздела</span>
+                    Базовый сценарий: рынок превысит 3 трлн ₽ уже в 2026 году, а среднегодовой рост до 2030 оценивается около 13%. Главный риск сценария — не спрос, а зависимость от импорта АФС и регуляторные ограничения.
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="subhead">Сценарии развития рынка на 2025–2026 и горизонт до 2030</div>
+                <div class="forecast">
+                    <div class="ftag">
+                        <div class="ft-year">2026 (базовый)</div>
+                        <div class="ft-val">рынок &gt; 3 трлн ₽</div>
+                    </div>
+                    <div class="ftag">
+                        <div class="ft-year">2026–2027</div>
+                        <div class="ft-val">рост 10–12% (IQVIA)</div>
+                    </div>
+                    <div class="ftag">
+                        <div class="ft-year">до 2030 (оптимистичный)</div>
+                        <div class="ft-val">CAGR ~13%</div>
+                    </div>
+                    <div class="ftag">
+                        <div class="ft-year">Пессимистичный</div>
+                        <div class="ft-val">замедление из-за регуляторики и АФС</div>
+                    </div>
+                </div>
+
+                <div class="subhead">Инвестиционная привлекательность отрасли</div>
+                <div class="split">
+                    <div class="metric-grid">
+                        <div class="metric"><div class="m-label">«Озон Фармацевтика»</div><div class="m-value">«Покупать»</div><div class="m-note">потенциал роста по оценкам аналитиков</div></div>
+                        <div class="metric"><div class="m-label">«Промомед»</div><div class="m-value">апсайд до 60%</div><div class="m-note">фокус на полный цикл и биосимиляры</div></div>
+                        <div class="metric"><div class="m-label">Барьеры входа</div><div class="m-value">высокие</div><div class="m-note">капиталоёмкость, регуляторика, АФС</div></div>
+                        <div class="metric"><div class="m-label">Доходность сектора</div><div class="m-value">выше рынка</div><div class="m-note">при понимании регуляторных рисков</div></div>
+                    </div>
+                    <div class="img-panel">
+                        <svg viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="p7" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#15803d"/><stop offset="1" stop-color="#4ade80"/>
+                                </linearGradient>
+                            </defs>
+                            <rect width="600" height="200" fill="url(#p7)"/>
+                            <g fill="#fff" opacity="0.13">
+                                <circle cx="540" cy="20" r="86"/>
+                                <circle cx="60" cy="190" r="70"/>
+                            </g>
+                            <g stroke="#fff" stroke-width="2" opacity="0.18">
+                                <path d="M80 40 v130 M160 40 v130 M240 40 v130 M320 40 v130 M400 40 v130 M480 40 v130"/>
+                                <path d="M60 60 h470 M60 110 h470 M60 160 h470"/>
+                            </g>
+                            <path d="M80 158 L170 138 L260 108 L350 82 L440 52 L520 28"
+                                  fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                            <g fill="#fff">
+                                <circle cx="170" cy="138" r="7"/>
+                                <circle cx="260" cy="108" r="7"/>
+                                <circle cx="350" cy="82" r="7"/>
+                                <circle cx="440" cy="52" r="7"/>
+                                <circle cx="520" cy="28" r="9"/>
+                            </g>
+                        </svg>
+                        <div class="cap">Инвестиционная привлекательность и сценарии до 2030 года</div>
+                    </div>
+                </div>
+
+                <div class="subhead">Сводная матрица ключевых драйверов и барьеров</div>
+                <div style="overflow-x:auto;">
+                    <table class="matrix">
+                        <thead>
+                            <tr>
+                                <th>Фактор</th>
+                                <th>Тип</th>
+                                <th class="center">Базовый</th>
+                                <th class="center">Оптимистичный</th>
+                                <th class="center">Пессимистичный</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Господдержка импортозамещения</td>
+                                <td>Драйвер</td>
+                                <td class="center cell-pos">+</td>
+                                <td class="center cell-pos">++</td>
+                                <td class="center cell-pos">+</td>
+                            </tr>
+                            <tr>
+                                <td>Рост онлайн-канала</td>
+                                <td>Драйвер</td>
+                                <td class="center cell-pos">+</td>
+                                <td class="center cell-pos">++</td>
+                                <td class="center cell-neu">0</td>
+                            </tr>
+                            <tr>
+                                <td>Консолидация розницы</td>
+                                <td>Драйвер</td>
+                                <td class="center cell-pos">+</td>
+                                <td class="center cell-pos">+</td>
+                                <td class="center cell-neu">0</td>
+                            </tr>
+                            <tr>
+                                <td>Зависимость от импорта АФС</td>
+                                <td>Барьер</td>
+                                <td class="center cell-neg">−</td>
+                                <td class="center cell-neu">0</td>
+                                <td class="center cell-neg">−−</td>
+                            </tr>
+                            <tr>
+                                <td>Сокращение ММКИ</td>
+                                <td>Барьер</td>
+                                <td class="center cell-neg">−</td>
+                                <td class="center cell-neu">0</td>
+                                <td class="center cell-neg">−−</td>
+                            </tr>
+                            <tr>
+                                <td>Инфляционное давление</td>
+                                <td>Барьер</td>
+                                <td class="center cell-neg">−</td>
+                                <td class="center cell-neg">−</td>
+                                <td class="center cell-neg">−−</td>
+                            </tr>
+                            <tr>
+                                <td>Ограничения онлайн-торговли Rx</td>
+                                <td>Барьер</td>
+                                <td class="center cell-neu">0</td>
+                                <td class="center cell-pos">+</td>
+                                <td class="center cell-neg">−</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="font-size:0.74rem;color:var(--muted);margin-top:8px;">
+                    ++ сильное положительное влияние · + положительное · 0 нейтральное · − отрицательное · −− сильное отрицательное
+                </p>
+
+                <div class="subhead">Инвестиционные рекомендации и общий вывод</div>
+                <div class="insight">
+                    <strong>Инвестиционный вывод:</strong> аналитики позитивно оценивают сектор. Ключевой среднесрочный фокус — компании с полным циклом производства и выходом в биосимиляры, а также онлайн-платформы, консолидирующие аптечную розницу. Основные риски связаны с зависимостью от импорта АФС и регуляторными ограничениями.
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ QUIZ ============ -->
+        <section class="quiz">
+            <div class="quiz-head">
+                <div class="qh-icon">🎯</div>
+                <div>
+                    <h2>Проверьте себя</h2>
+                    <p>Три вопроса по данным дашборда — выберите один вариант ответа</p>
+                </div>
+                <div class="quiz-score">Счёт: <span id="quizScore">0 / 3</span></div>
+            </div>
+            <div class="quiz-body">
+                <div class="quiz-q">
+                    <p class="q-text">1. Что в 2025 году росло быстрее?</p>
+                    <div class="q-opts">
+                        <button class="q-opt" data-correct="0">Объём в упаковках</button>
+                        <button class="q-opt" data-correct="1">Объём в деньгах</button>
+                        <button class="q-opt" data-correct="0">Число аптечных организаций</button>
+                    </div>
+                    <div class="q-feedback"
+                         data-ok="Рынок в деньгах вырос на 17%, а в упаковках — лишь на 3,2%."
+                         data-no="Быстрее рос объём в деньгах: +17% против +3,2% в упаковках."></div>
+                </div>
+                <div class="quiz-q">
+                    <p class="q-text">2. Какая доля активных фармсубстанций (АФС) производится в России?</p>
+                    <div class="q-opts">
+                        <button class="q-opt" data-correct="1">Около 10%</button>
+                        <button class="q-opt" data-correct="0">Около 50%</button>
+                        <button class="q-opt" data-correct="0">Около 90%</button>
+                    </div>
+                    <div class="q-feedback"
+                         data-ok="Локализация АФС — около 10%, 70–80% субстанций импортируется."
+                         data-no="Локализация АФС — лишь ~10%: основное сырьё импортируется из Китая и Индии."></div>
+                </div>
+                <div class="quiz-q">
+                    <p class="q-text">3. Какой канал продаж растёт быстрее?</p>
+                    <div class="q-opts">
+                        <button class="q-opt" data-correct="0">Офлайн-аптеки</button>
+                        <button class="q-opt" data-correct="1">Онлайн-продажи</button>
+                        <button class="q-opt" data-correct="0">Госзакупки</button>
+                    </div>
+                    <div class="q-feedback"
+                         data-ok="Онлайн +33,8% против +12,1% у офлайн-розницы."
+                         data-no="Быстрее растёт онлайн: +33,8% против +12,1% в офлайне."></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CALCULATOR ============ -->
+        <section class="calc-section">
+            <div class="calc-head">
+                <div class="ch-icon">🧮</div>
+                <div class="ch-text">
+                    <h2>Калькулятор прогноза трендов</h2>
+                    <p>Меняйте параметры рынка — графики и KPI пересчитываются мгновенно</p>
+                </div>
+                <div class="calc-presets">
+                    <button class="preset-btn" data-preset="pess">Пессимистичный</button>
+                    <button class="preset-btn active" data-preset="base">Базовый</button>
+                    <button class="preset-btn" data-preset="opt">Оптимистичный</button>
+                </div>
+            </div>
+            <div class="calc-body">
+                <div class="calc-inputs">
+                    <div class="calc-field">
+                        <label>Объём рынка 2025 <span class="val-badge" id="badgeBase">3,3 трлн ₽</span></label>
+                        <input type="range" id="inputBase" min="2.5" max="4.5" step="0.1" value="3.3"
+                               aria-label="Объём рынка 2025, трлн ₽">
+                    </div>
+                    <div class="calc-field">
+                        <label>Среднегодовой рост рынка <span class="val-badge" id="badgeCagr">11,0%</span></label>
+                        <input type="range" id="inputCagr" min="3" max="18" step="0.5" value="11"
+                               aria-label="Среднегодовой рост рынка, %">
+                    </div>
+                    <div class="calc-field">
+                        <label>Доля онлайна в 2025 <span class="val-badge" id="badgeOnline">24,6%</span></label>
+                        <input type="range" id="inputOnline" min="10" max="40" step="0.1" value="24.6"
+                               aria-label="Доля онлайна в 2025, %">
+                    </div>
+                    <div class="calc-field">
+                        <label>Прирост доли онлайна <span class="val-badge" id="badgeOnlineDelta">+4,0 п.п.</span></label>
+                        <input type="range" id="inputOnlineDelta" min="0" max="8" step="0.5" value="4"
+                               aria-label="Ежегодный прирост доли онлайна, п.п.">
+                    </div>
+                    <button class="calc-reset" id="calcReset">↺ Сбросить к базовому</button>
+                </div>
+
+                <div class="calc-results">
+                    <div class="calc-kpis">
+                        <div class="ck c1">
+                            <div class="ck-label">Рынок 2030</div>
+                            <div class="ck-value" id="kpiMarket2030">—</div>
+                        </div>
+                        <div class="ck c2">
+                            <div class="ck-label">Рост 2025 → 2030</div>
+                            <div class="ck-value" id="kpiGrowth">—</div>
+                        </div>
+                        <div class="ck c3">
+                            <div class="ck-label">Онлайн 2030</div>
+                            <div class="ck-value" id="kpiOnline2030">—</div>
+                        </div>
+                        <div class="ck c4">
+                            <div class="ck-label">Доля онлайна 2030</div>
+                            <div class="ck-value" id="kpiOnlineShare">—</div>
+                        </div>
+                    </div>
+
+                    <div class="calc-chart-wrap">
+                        <div class="chart-title">
+                            <span>Объём рынка 2025–2030</span>
+                            <span class="ct-unit">трлн ₽</span>
+                        </div>
+                        <svg class="calc-svg" id="chartMarket" viewBox="0 0 800 340"
+                             role="img" aria-label="Линейный график объёма рынка"></svg>
+                    </div>
+
+                    <div class="calc-chart-wrap">
+                        <div class="chart-title">
+                            <span>Онлайн vs офлайн по годам</span>
+                            <span class="ct-unit">трлн ₽</span>
+                        </div>
+                        <svg class="calc-svg" id="chartSplit" viewBox="0 0 800 340"
+                             role="img" aria-label="Столбчатая диаграмма онлайн и офлайн"></svg>
+                    </div>
+
+                    <div>
+                        <table class="calc-table" aria-label="Годовая таблица прогноза">
+                            <thead>
+                                <tr>
+                                    <th>Год</th>
+                                    <th>Рынок, трлн ₽</th>
+                                    <th>Онлайн, трлн ₽</th>
+                                    <th>Доля онлайна</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calcTableBody"></tbody>
+                        </table>
+                        <p class="calc-note">
+                            Модель: сложный процент от базы 2025 г. Доля онлайна линейно растёт на заданный шаг в п.п.
+                            каждый год. Прогноз носит иллюстративный характер и не является инвестиционной рекомендацией.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FOOTER ============ -->
+        <footer class="footer">
+            <p>Дашборд составлен на основе материалов РБК Отрасли и РБК Компании, данных DSM Group, RNC Pharma, AlphaRM, IQVIA.</p>
+            <div class="links">
+                <a href="https://www.rbc.ru/industries/news/693296b49a79476011bfa709" target="_blank" rel="noopener">Какие факторы формируют будущее фармрынка</a>
+                <a href="https://companies.rbc.ru/news/Hh7f5ycAT7/importozameschenie-i-rost-onlajn-prodazh-trendyi-farmryinka-i-prognoz-na-2026/" target="_blank" rel="noopener">Импортозамещение и онлайн-продажи</a>
+                <a href="https://www.rbc.ru/industries/news/6852c2d29a79479a4278b8dd" target="_blank" rel="noopener">Рынок дженериков</a>
+                <a href="https://www.rbc.ru/industries/news/6a0c43789a7947ecd7d57504" target="_blank" rel="noopener">Стимулы для инноваций</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ============ PROGRESS WIDGET ============ -->
+    <div class="progress-widget" id="progressWidget">
+        <div class="pw-head">
+            <span class="pw-title">🎯 Исследование</span>
+            <span class="pw-count"><span id="pwNum">0</span>/7</span>
+        </div>
+        <div class="pw-track"><div class="pw-fill" id="pwFill"></div></div>
+        <div class="pw-msg" id="pwMsg">Открывайте факты разделов</div>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            /* ============ TOAST ============ */
+            function toast(msg) {
+                var t = document.createElement('div');
+                t.className = 'toast';
+                t.textContent = msg;
+                document.body.appendChild(t);
+                requestAnimationFrame(function () { t.classList.add('show'); });
+                setTimeout(function () {
+                    t.classList.remove('show');
+                    setTimeout(function () { t.remove(); }, 450);
+                }, 2600);
+            }
+
+            /* ============ PROGRESS WIDGET ============ */
+            var TOTAL = 7;
+            var explored = new Set();
+
+            function updateProgress() {
+                var n = explored.size;
+                document.getElementById('pwNum').textContent = n;
+                document.getElementById('pwFill').style.width = (n / TOTAL * 100) + '%';
+                var widget = document.getElementById('progressWidget');
+                var msg = document.getElementById('pwMsg');
+                if (n === TOTAL) {
+                    widget.classList.add('done');
+                    msg.textContent = '🏆 Все инсайты собраны!';
+                    toast('🏆 Достижение: открыты все 7 инсайтов дашборда!');
+                } else {
+                    widget.classList.remove('done');
+                    msg.textContent = 'Осталось разделов: ' + (TOTAL - n);
+                }
+            }
+
+            /* ============ FACT BUTTONS ============ */
+            document.querySelectorAll('.fact-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var id = btn.dataset.sec;
+                    var panel = document.getElementById('fact-' + id);
+                    var isOpen = panel.classList.toggle('open');
+                    btn.classList.toggle('opened', isOpen);
+                    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                    btn.querySelector('.fb-text').textContent = isOpen ? 'Скрыть' : 'Факт';
+                    if (isOpen && !explored.has(id)) {
+                        explored.add(id);
+                        updateProgress();
+                        toast('💡 Открыт инсайт раздела ' + id + ' из 7');
+                    }
+                });
+            });
+
+            /* ============ KPI FLIP ============ */
+            document.querySelectorAll('.kpi').forEach(function (card) {
+                var flip = function () { card.classList.toggle('flipped'); };
+                card.addEventListener('click', flip);
+                card.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        flip();
+                    }
+                });
+            });
+
+            /* ============ QUIZ ============ */
+            var score = 0;
+            var answered = 0;
+            var scoreEl = document.getElementById('quizScore');
+
+            document.querySelectorAll('.q-opt').forEach(function (opt) {
+                opt.addEventListener('click', function () {
+                    var q = opt.closest('.quiz-q');
+                    if (q.dataset.done) return;
+                    q.dataset.done = '1';
+                    var isCorrect = opt.dataset.correct === '1';
+
+                    q.querySelectorAll('.q-opt').forEach(function (o) {
+                        o.disabled = true;
+                        if (o.dataset.correct === '1') o.classList.add('correct');
+                    });
+                    if (!isCorrect) opt.classList.add('wrong');
+
+                    var fb = q.querySelector('.q-feedback');
+                    fb.textContent = isCorrect ? '✅ ' + fb.dataset.ok : '❌ ' + fb.dataset.no;
+                    fb.classList.add('show', isCorrect ? 'ok' : 'no');
+
+                    if (isCorrect) score++;
+                    answered++;
+                    scoreEl.textContent = score + ' / 3';
+
+                    if (answered === 3) {
+                        setTimeout(function () {
+                            toast(score === 3
+                                ? '🥇 Идеально: 3 из 3! Вы отлично знаете рынок'
+                                : '🎓 Квиз пройден: ' + score + ' из 3');
+                        }, 600);
+                    }
+                });
+            });
+
+            updateProgress();
+
+            /* ================================================================
+               CALCULATOR
+               ================================================================ */
+            var $ = function (id) { return document.getElementById(id); };
+
+            var inputs = {
+                base: $('inputBase'),
+                cagr: $('inputCagr'),
+                online: $('inputOnline'),
+                onlineDelta: $('inputOnlineDelta')
+            };
+
+            var badges = {
+                base: $('badgeBase'),
+                cagr: $('badgeCagr'),
+                online: $('badgeOnline'),
+                onlineDelta: $('badgeOnlineDelta')
+            };
+
+            var YEARS = [2025, 2026, 2027, 2028, 2029, 2030];
+
+            var PRESETS = {
+                base: { base: 3.3, cagr: 11, online: 24.6, onlineDelta: 4 },
+                opt:  { base: 3.3, cagr: 13, online: 24.6, onlineDelta: 5 },
+                pess: { base: 3.0, cagr: 6,  online: 24.6, onlineDelta: 2 }
+            };
+
+            function fmt(n, d) {
+                return n.toFixed(d).replace('.', ',');
+            }
+
+            /* ---------- SVG LINE CHART ---------- */
+            function renderLineChart(svg, values) {
+                var W = 800, H = 340;
+                var m = { t: 30, r: 30, b: 50, l: 74 };
+                var iw = W - m.l - m.r;
+                var ih = H - m.t - m.b;
+
+                var maxV = Math.max.apply(null, values);
+                var yMax = Math.ceil(maxV * 1.15 * 10) / 10;
+                if (yMax <= 0) yMax = 1;
+
+                var xs = values.map(function (_, i) {
+                    return m.l + (i / (values.length - 1)) * iw;
+                });
+                var ys = values.map(function (v) {
+                    return m.t + ih - (v / yMax) * ih;
+                });
+
+                var grid = '';
+                for (var i = 0; i <= 4; i++) {
+                    var y = m.t + (ih / 4) * i;
+                    var val = yMax - (yMax / 4) * i;
+                    grid += '<line x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y + '" y2="' + y +
+                            '" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="' + (i === 4 ? '0' : '3 4') + '"/>';
+                    grid += '<text x="' + (m.l - 10) + '" y="' + (y + 4) +
+                            '" text-anchor="end" font-size="11" fill="#64748b" font-family="Manrope,sans-serif">' +
+                            fmt(val, 1) + '</text>';
+                }
+
+                var areaPath = 'M ' + xs[0] + ' ' + (m.t + ih);
+                for (var a = 0; a < xs.length; a++) {
+                    areaPath += ' L ' + xs[a] + ' ' + ys[a];
+                }
+                areaPath += ' L ' + xs[xs.length - 1] + ' ' + (m.t + ih) + ' Z';
+
+                var linePath = 'M ' + xs[0] + ' ' + ys[0];
+                for (var b = 1; b < xs.length; b++) {
+                    linePath += ' L ' + xs[b] + ' ' + ys[b];
+                }
+
+                var points = '';
+                for (var p = 0; p < xs.length; p++) {
+                    points += '<circle cx="' + xs[p] + '" cy="' + ys[p] +
+                              '" r="6" fill="#fff" stroke="#7c3aed" stroke-width="3"/>';
+                    points += '<text x="' + xs[p] + '" y="' + (ys[p] - 14) +
+                              '" text-anchor="middle" font-size="11" font-weight="800" fill="#1e1b4b" font-family="Manrope,sans-serif">' +
+                              fmt(values[p], 2) + '</text>';
+                }
+
+                var xLabels = '';
+                for (var x = 0; x < YEARS.length; x++) {
+                    xLabels += '<text x="' + xs[x] + '" y="' + (m.t + ih + 22) +
+                               '" text-anchor="middle" font-size="11" font-weight="700" fill="#64748b" font-family="Manrope,sans-serif">' +
+                               YEARS[x] + '</text>';
+                }
+
+                svg.innerHTML =
+                    '<defs>' +
+                        '<linearGradient id="lineAreaGrad" x1="0" y1="0" x2="0" y2="1">' +
+                            '<stop offset="0" stop-color="#7c3aed" stop-opacity="0.35"/>' +
+                            '<stop offset="1" stop-color="#7c3aed" stop-opacity="0"/>' +
+                        '</linearGradient>' +
+                        '<linearGradient id="lineStrokeGrad" x1="0" y1="0" x2="1" y2="0">' +
+                            '<stop offset="0" stop-color="#7c3aed"/>' +
+                            '<stop offset="1" stop-color="#ec4899"/>' +
+                        '</linearGradient>' +
+                    '</defs>' +
+                    grid +
+                    '<path d="' + areaPath + '" fill="url(#lineAreaGrad)"/>' +
+                    '<path d="' + linePath + '" fill="none" stroke="url(#lineStrokeGrad)" stroke-width="4" ' +
+                          'stroke-linecap="round" stroke-linejoin="round"/>' +
+                    points + xLabels;
+            }
+
+            /* ---------- SVG STACKED BARS ---------- */
+            function renderStackedBars(svg, online, offline) {
+                var W = 800, H = 340;
+                var m = { t: 30, r: 30, b: 50, l: 74 };
+                var iw = W - m.l - m.r;
+                var ih = H - m.t - m.b;
+
+                var totals = online.map(function (o, i) { return o + offline[i]; });
+                var yMax = Math.ceil(Math.max.apply(null, totals) * 1.15 * 10) / 10;
+                if (yMax <= 0) yMax = 1;
+
+                var n = YEARS.length;
+                var slot = iw / n;
+                var barW = slot * 0.55;
+                var gap = slot - barW;
+
+                var grid = '';
+                for (var i = 0; i <= 4; i++) {
+                    var y = m.t + (ih / 4) * i;
+                    var val = yMax - (yMax / 4) * i;
+                    grid += '<line x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y + '" y2="' + y +
+                            '" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="' + (i === 4 ? '0' : '3 4') + '"/>';
+                    grid += '<text x="' + (m.l - 10) + '" y="' + (y + 4) +
+                            '" text-anchor="end" font-size="11" fill="#64748b" font-family="Manrope,sans-serif">' +
+                            fmt(val, 1) + '</text>';
+                }
+
+                var bars = '';
+                for (var b = 0; b < n; b++) {
+                    var x = m.l + gap / 2 + b * slot;
+                    var totalH = (totals[b] / yMax) * ih;
+                    var onlineH = (online[b] / yMax) * ih;
+                    var offlineH = (offline[b] / yMax) * ih;
+                    var yTop = m.t + ih - totalH;
+                    var yOnlineBottom = yTop + onlineH;
+
+                    bars += '<rect x="' + x + '" y="' + yTop + '" width="' + barW + '" height="' + onlineH +
+                            '" rx="6" fill="#0d9488"><title>Онлайн: ' + fmt(online[b], 2) + ' трлн ₽</title></rect>';
+                    bars += '<rect x="' + x + '" y="' + yOnlineBottom + '" width="' + barW + '" height="' + offlineH +
+                            '" rx="6" fill="#7c3aed"><title>Офлайн: ' + fmt(offline[b], 2) + ' трлн ₽</title></rect>';
+
+                    bars += '<text x="' + (x + barW / 2) + '" y="' + (yTop - 8) +
+                            '" text-anchor="middle" font-size="11" font-weight="800" fill="#1e1b4b" font-family="Manrope,sans-serif">' +
+                            fmt(totals[b], 2) + '</text>';
+                    bars += '<text x="' + (x + barW / 2) + '" y="' + (m.t + ih + 22) +
+                            '" text-anchor="middle" font-size="11" font-weight="700" fill="#64748b" font-family="Manrope,sans-serif">' +
+                            YEARS[b] + '</text>';
+                }
+
+                var legend = 
+                    '<g transform="translate(' + (W - m.r - 190) + ',' + (m.t + 6) + ')">' +
+                        '<rect x="0" y="-10" width="14" height="14" rx="4" fill="#0d9488"/>' +
+                        '<text x="20" y="1" font-size="12" font-weight="700" fill="#334155" font-family="Manrope,sans-serif">Онлайн</text>' +
+                        '<rect x="100" y="-10" width="14" height="14" rx="4" fill="#7c3aed"/>' +
+                        '<text x="120" y="1" font-size="12" font-weight="700" fill="#334155" font-family="Manrope,sans-serif">Офлайн</text>' +
+                    '</g>';
+
+                svg.innerHTML = grid + bars + legend;
+            }
+
+            /* ---------- MAIN RECALC ---------- */
+            function recalc() {
+                var base = parseFloat(inputs.base.value);
+                var cagr = parseFloat(inputs.cagr.value);
+                var onlineStart = parseFloat(inputs.online.value);
+                var onlineDelta = parseFloat(inputs.onlineDelta.value);
+
+                badges.base.textContent = fmt(base, 1) + ' трлн ₽';
+                badges.cagr.textContent = fmt(cagr, 1) + '%';
+                badges.online.textContent = fmt(onlineStart, 1) + '%';
+                badges.onlineDelta.textContent = (onlineDelta >= 0 ? '+' : '') + fmt(onlineDelta, 1) + ' п.п.';
+
+                var market = [];
+                var onlineShare = [];
+                var onlineVol = [];
+                var offlineVol = [];
+
+                var m = base;
+                var s = onlineStart;
+                for (var i = 0; i < YEARS.length; i++) {
+                    market.push(m);
+                    var share = Math.min(Math.max(s, 0), 90);
+                    onlineShare.push(share);
+                    onlineVol.push(m * share / 100);
+                    offlineVol.push(m * (1 - share / 100));
+                    m = m * (1 + cagr / 100);
+                    s = s + onlineDelta;
+                }
+
+                /* KPIs */
+                $('kpiMarket2030').textContent = fmt(market[5], 2) + ' трлн ₽';
+                var growth = (market[5] / market[0] - 1) * 100;
+                $('kpiGrowth').textContent = '+' + fmt(growth, 0) + '%';
+                $('kpiOnline2030').textContent = fmt(onlineVol[5], 2) + ' трлн ₽';
+                $('kpiOnlineShare').textContent = fmt(onlineShare[5], 1) + '%';
+
+                /* Charts */
+                renderLineChart($('chartMarket'), market);
+                renderStackedBars($('chartSplit'), onlineVol, offlineVol);
+
+                /* Table */
+                var tbody = $('calcTableBody');
+                var rows = '';
+                for (var r = 0; r < YEARS.length; r++) {
+                    rows += '<tr>' +
+                        '<td>' + YEARS[r] + '</td>' +
+                        '<td>' + fmt(market[r], 2) + '</td>' +
+                        '<td class="td-online">' + fmt(onlineVol[r], 2) + '</td>' +
+                        '<td>' + fmt(onlineShare[r], 1) + '%</td>' +
+                    '</tr>';
+                }
+                tbody.innerHTML = rows;
+            }
+
+            /* ---------- EVENTS ---------- */
+            Object.keys(inputs).forEach(function (k) {
+                inputs[k].addEventListener('input', function () {
+                    document.querySelectorAll('.preset-btn').forEach(function (b) {
+                        b.classList.remove('active');
+                    });
+                    recalc();
+                });
+            });
+
+            document.querySelectorAll('.preset-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var p = PRESETS[btn.dataset.preset];
+                    if (!p) return;
+                    inputs.base.value = p.base;
+                    inputs.cagr.value = p.cagr;
+                    inputs.online.value = p.online;
+                    inputs.onlineDelta.value = p.onlineDelta;
+                    document.querySelectorAll('.preset-btn').forEach(function (b) {
+                        b.classList.remove('active');
+                    });
+                    btn.classList.add('active');
+                    recalc();
+                });
+            });
+
+            $('calcReset').addEventListener('click', function () {
+                var p = PRESETS.base;
+                inputs.base.value = p.base;
+                inputs.cagr.value = p.cagr;
+                inputs.online.value = p.online;
+                inputs.onlineDelta.value = p.onlineDelta;
+                document.querySelectorAll('.preset-btn').forEach(function (b) {
+                    b.classList.toggle('active', b.dataset.preset === 'base');
+                });
+                recalc();
+            });
+
+            /* ---------- INIT ---------- */
+            recalc();
+        })();
+    </script>
+</body>
+</html>
